@@ -1,0 +1,73 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Upload Release Asset
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest
+    
+    steps:
+      - name: Cache Build Environment
+        id: cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+                /usr
+                /opt
+                /agbcc
+                /Fire-Red-Final
+                /bin
+          key: default-cache
+          
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Prepare dependencies
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+              sudo apt update -y -qq
+              sudo apt install build-essential -y -qq
+              sudo apt binutils-arm-none-eabi -y -qq
+              sudo apt-get install libpng-dev -y -qq
+              sudo pacman -Sy -y
+              sudo pacman -S gba-dev -y
+              cd ..
+              git clone https://github.com/pret/agbcc --quiet
+              cd ./agbcc
+              ./build.sh
+              ./install.sh ../Fire-Red-Final
+              cd ../Fire-Red-Final
+      
+      - name: Ensure setup
+        if: steps.cache-build.outputs.cache-hit
+        run: |
+              cd ./Fire-Red-Final
+      - name: Build project 
+        run: make
+        
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./frfinal.gba
+          asset_name: frfinal.gba
+          asset_content_type: application
