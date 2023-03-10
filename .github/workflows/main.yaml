@@ -33,7 +33,7 @@ jobs:
         run: |
               sudo apt update -y -qq
               sudo apt install build-essential -y -qq
-              sudo apt binutils-arm-none-eabi -y -qq
+              sudo apt install binutils-arm-none-eabi -y -qq
               sudo apt-get install libpng-dev -y -qq
               sudo pacman -Sy -y
               sudo pacman -S gba-dev -y
