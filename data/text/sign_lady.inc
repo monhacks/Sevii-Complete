@@ -10,7 +10,6 @@ PalletTown_Text_OhLookLook::
 
 PalletTown_Text_ReadItReadIt::
 	.string "Read it, read it!$"
-	
 
 @ Used by sign
 PalletTown_Text_PressStartToOpenMenu::
