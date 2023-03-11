@@ -21,7 +21,7 @@ jobs:
                 /usr
                 /opt
                 /agbcc
-                /Fire-Red-Final
+                /FireRed-Sevii-Completed
                 /bin
           key: default-cache
           
@@ -39,13 +39,13 @@ jobs:
               git clone https://github.com/pret/agbcc --quiet
               cd ./agbcc
               ./build.sh
-              ./install.sh ../Fire-Red-Final
-              cd ../Fire-Red-Final
+              ./install.sh ../FireRed-Sevii-Completed
+              cd ../FireRed-Sevii-Completed
       
       - name: Ensure setup
         if: steps.cache-build.outputs.cache-hit
         run: |
-              cd ./Fire-Red-Final
+              cd ./FireRed-Sevii-Completed
       - name: Build project 
         run: make
         
