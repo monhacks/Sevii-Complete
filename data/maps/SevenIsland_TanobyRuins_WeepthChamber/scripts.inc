@@ -9,7 +9,7 @@ SevenIsland_TanobyRuins_WeepthChamber_OnTransition::
 	end
 
 SevenIsland_TanobyRuins_WeepthChamber_OnResume::
-	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, SevenIsland_TanobyRuins_WeepthChamber_TryRemoveEntei
+	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, SevenIsland_TanobyRuins_WeepthChamber_EventScript_TryRemoveEntei
 	end
 
 SevenIsland_TanobyRuins_WeepthChamber_EventScript_TryRemoveEntei::
