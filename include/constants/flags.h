@@ -190,11 +190,10 @@
 #define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE
 
 // Unused?
-#define FLAG_0x0AF               0x0AF
-#define FLAG_0x0B0               0x0B0
-#define FLAG_0x0B1               0x0B1
-#define FLAG_0x0B2               0x0B2
-#define FLAG_0x0B3               0x0B3
+#define FLAG_HIDE_ENTEI               0x0AF
+#define FLAG_HIDE_SUICUNE               0x0B0
+#define FLAG_HIDE_RAIKOU       0x0B2
+#define FLAG_INTERACT_HO_OH               0x0B3
 #define FLAG_0x0B4               0x0B4
 #define FLAG_0x0B5               0x0B5
 #define FLAG_0x0B6               0x0B6
@@ -794,9 +793,9 @@
 #define FLAG_OAKS_RATING_IS_VIA_PC                       0x2FF
 
 // Unused?
-#define FLAG_0x300               0x300
-#define FLAG_0x301               0x301
-#define FLAG_0x302               0x302
+#define FLAG_FOUGHT_ENTEI               0x300
+#define FLAG_FOUGHT_SUICUNE               0x301
+#define FLAG_FOUGHT_RAIKOU               0x302
 #define FLAG_0x303               0x303
 #define FLAG_0x304               0x304
 #define FLAG_0x305               0x305

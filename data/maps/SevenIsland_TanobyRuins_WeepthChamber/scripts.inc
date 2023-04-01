@@ -4,4 +4,60 @@ SevenIsland_TanobyRuins_WeepthChamber_MapScripts::
 
 SevenIsland_TanobyRuins_WeepthChamber_OnTransition::
 	call EventScript_TryDarkenRuins
+	call_if_unset FLAG_INTERACT_HO_OH, SevenIsland_TanobyRuins_WeepthChamber_EventScript_HideEntei
+	call_if_set FLAG_INTERACT_HO_OH, SevenIsland_TanobyRuins_WeepthChamber_EventScript_ShowEntei
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_OnResume::
+	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, SevenIsland_TanobyRuins_WeepthChamber_TryRemoveEntei
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_TryRemoveEntei::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_Return
+	removeobject VAR_LAST_TALKED
+	return
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_HideEntei::
+	setflag FLAG_HIDE_ENTEI
+	return
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_ShowEntei::
+	clearflag FLAG_HIDE_ENTEI
+	return
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_Entei::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_Entei, 50
+	waitse
+	playmoncry SPECIES_Entei, CRY_MODE_ENCOUNTER
+	message Text_Grahh
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_WeepthChamber_EventScript_DefeatedEntei
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SevenIsland_TanobyRuins_WeepthChamber_EventScript_RanFromEntei
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SevenIsland_TanobyRuins_WeepthChamber_EventScript_RanFromEntei
+	setflag FLAG_FOUGHT_ENTEI
+	release
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_DefeatedEntei::
+	setflag FLAG_FOUGHT_ENTEI
+	goto EventScript_RemoveStaticMon
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_RanFromEntei::
+	setvar VAR_0x8004, SPECIES_Entei
+	goto EventScript_MonFlewAway
 	end

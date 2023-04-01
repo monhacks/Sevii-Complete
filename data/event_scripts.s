@@ -1005,6 +1005,10 @@ Text_FoundTMHMContainsMove::
 Text_Gyaoo::
 	.string "Gyaoo!$"
 
+@ Call for legendary beast trio
+Text_Grahh::
+	.string "Grahh!$"
+
 Text_MoveCanOnlyBeLearnedOnce::
 	.string "This move can be learned only\n"
 	.string "once. Is that okay?$"
