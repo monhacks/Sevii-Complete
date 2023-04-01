@@ -21,7 +21,7 @@ jobs:
                 /usr
                 /opt
                 /agbcc
-                /FireRed-Sevii-Complete
+                /Sevii-Complete
                 /bin
           key: default-cache
           
@@ -39,15 +39,15 @@ jobs:
               git clone https://github.com/pret/agbcc --quiet
               cd ./agbcc
               ./build.sh
-              ./install.sh ../FireRed-Sevii-Complete
-              cd ../FireRed-Sevii-Complete
+              ./install.sh ../Sevii-Complete
+              cd ../Sevii-Complete
       
       - name: Ensure setup
         if: steps.cache-build.outputs.cache-hit
         run: |
-              cd ./FireRed-Sevii-Complete
+              cd ./Sevii-Complete
       - name: Build project 
-        run: make
+        run: make leafgreen
         
       - name: Create Release
         id: create_release
@@ -63,4 +63,4 @@ jobs:
         id: upload-rom
         uses: softprops/action-gh-release@v1
         with:
-          files: pokefirered.gba
+          files: pokeleafgreen.gba
