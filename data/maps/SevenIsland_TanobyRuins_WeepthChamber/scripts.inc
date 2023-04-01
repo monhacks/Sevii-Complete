@@ -31,9 +31,9 @@ SevenIsland_TanobyRuins_WeepthChamber_EventScript_Entei::
 	special QuestLog_CutRecording
 	lock
 	faceplayer
-	setwildbattle SPECIES_Entei, 50
+	setwildbattle SPECIES_ENTEI, 50
 	waitse
-	playmoncry SPECIES_Entei, CRY_MODE_ENCOUNTER
+	playmoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER
 	message Text_Grahh
 	waitmessage
 	waitmoncry
@@ -58,6 +58,6 @@ SevenIsland_TanobyRuins_WeepthChamber_EventScript_DefeatedEntei::
 	end
 
 SevenIsland_TanobyRuins_WeepthChamber_EventScript_RanFromEntei::
-	setvar VAR_0x8004, SPECIES_Entei
+	setvar VAR_0x8004, SPECIES_ENTEI
 	goto EventScript_MonFlewAway
 	end
